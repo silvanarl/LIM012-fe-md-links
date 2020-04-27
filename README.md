@@ -84,6 +84,7 @@ las necesidades del usuario:
 
 - Encontrar el *pseudo codigo* o *diagrama de flujo* con el algoritmo que
   soluciona el problema.
+![Diagrama-de-flujo](src/img/Diagrama_md-links.png)
 - Encontrar un board con el backlog para la implementación de la librería.
 - Encontrar la documentación técnica de la librería.
 - Encontrar la Guía de uso e instalación de la librería.
