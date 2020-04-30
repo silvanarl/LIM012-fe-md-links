@@ -4,7 +4,8 @@
   "description": "Analiza archivos en formato Markdown, verifica los links que contengan y reporta algunas estadísticas.",
   "main": "main.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose --coverage",
+    "eslint": "eslint --ext .js src/ test/"
   },
   "repository": {
     "type": "git",
