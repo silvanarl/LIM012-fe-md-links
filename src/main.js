@@ -1,39 +1,80 @@
 const path = require('path');
 const fs = require('fs');
-const process = require('process');
+const marked = require('marked');
+
 
 const isValidPath = (route) => fs.existsSync(route);
-// console.log(isValidPath('C:/Users/acer/Desktop/LIM012-fe-md-links/test/example/moreExamples'));
 
 const isAbsolutePath = (route) => path.isAbsolute(route);
-// console.log(isAbsolutePath('./documents/example/')); //false
 
 const converterRelativeToAbsolutePath = (route) => path.resolve(route);
-//console.log(converterRelativeToAbsolutePath('./test/example/moreExamples'));
 
 const isDirectoryPath = (route) => fs.lstatSync(route).isDirectory();
-// console.log(isDirectoryPath('./test/example/sample_text.md')); //false
 
-const isFileMdPath = (route) => (path.extname(route));
-// console.log(isFileMdPath('./test/example/evenMoreExamples/file2.md')) //.md
+const routeExtension = (route) => (path.extname(route));
 
 const readDirectoryPath = (route) => {
-  return fs.readdirSync(route) ;
+  const arrFiles = fs.readdirSync(route);
+  return arrFiles.map(file => {
+    return path.join(route, file);
+  })
 };
-// console.log(readDirectoryPath('./test/example/evenMoreExamples')); //devuelve archivos en array
+//console.log(readDirectoryPath('./test/example/evenMoreExamples'));
+
+//console.log(readDirectoryPath('./test/example/evenMoreExamples')); 
+//devuelve array con ruta de archivos encontrados 
+
+const findMdFiles = (route) => {
+  let arrMD = [];
+  if (!isDirectoryPath(route)){
+    if (routeExtension(route) === '.md'){
+    arrMD.push(route)
+    }
+  } else {
+      readDirectoryPath(route).forEach((file) =>{
+      const fileRoute = file;
+      const completeRoute = findMdFiles(fileRoute)
+      arrMD = arrMD.concat(completeRoute);
+    });
+  }
+  return arrMD;
+}
+console.log(findMdFiles('./test/example/evenMoreExamples'));
+// array con ruta de archivos md
 
 const readFilePath = (route) => {
   return fs.readFileSync(route, 'utf-8');
+};
+
+const extractLinks = (documents) => {
+  let arrLinks = [];
+  const mark = new marked.Renderer();
+  mark.link = (href, file, text) => {
+    const propLink = {
+      href,
+      file,
+      text,
+    };
+    arrLinks.push(propLink);
+  }
+  documents.forEach(document => {
+    marked(readFilePath(document), { renderer: mark })
+  }) 
+  return arrLinks;  
 }
-// console.log(readFilePath('./test/example/sample_text.md'));
+console.log(extractLinks(['test\\example\\evenMoreExamples\\file2.md']));
+
+
 
 module.exports = {
   isValidPath,
   isAbsolutePath,
   converterRelativeToAbsolutePath,
   isDirectoryPath,
-  isFileMdPath,
+  routeExtension,
   readDirectoryPath,
-  readFilePath
+  readFilePath,
+  findMdFiles,
+  extractLinks
 }
 
