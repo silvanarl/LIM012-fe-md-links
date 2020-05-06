@@ -6,7 +6,8 @@ const {
   routeExtension,
   readDirectoryPath,
   readFilePath,
-  extractLinks
+  extractLinks,
+  findMdFiles
 } = require('../src/main.js');
 
 const output1 = [
@@ -63,6 +64,16 @@ const output3 = [
     text: 'I&#39;m an inline-style link with title'
   }
 ];
+const output4 = [
+  './test/example/sample_text.md'
+]
+const output5 = [
+  'test\\example\\evenMoreExamples\\file2.md',
+  'test\\example\\moreExamples\\readme1.md',
+  'test\\example\\moreExamples\\readme2.md',
+  'test\\example\\sample_text.md'
+];
+
 describe('isValidPath', () => {
     it('should be a function', () => {
       expect(typeof isValidPath).toBe('function');
@@ -148,5 +159,17 @@ describe('extractLinks', () => {
   });
   it('should return an array of objects with the properties of each found link', () => {
       expect(extractLinks(input1)).toEqual(output3);
+  });
+});
+
+describe('findMDFiles', () => {
+  it('should be a function', () => {
+    expect(typeof findMdFiles).toBe('function');
+  });
+  it('should return in an array the path it receives if it is an .md file', () => {
+    expect(findMdFiles('./test/example/sample_text.md')).toEqual(output4);
+  });
+  it('should return an array with all the md files found when it receives a directory', () => {
+    expect(findMdFiles('./test/example')).toEqual(output5);
   });
 });
