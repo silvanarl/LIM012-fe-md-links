@@ -16,52 +16,47 @@ const output1 = [
 'test\\example\\evenMoreExamples\\file3.html', 
 'test\\example\\evenMoreExamples\\otherFiles'];
 const output2 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-const input1 = ['test\\example\\evenMoreExamples\\file2.md']
+
 const output3 = [
   { 
-    href: 'https://nodejs.org/en/',
-    title: null, 
-    text: 'Node.js' 
+    href: 'https://nodejs.org/en/', 
+    text: 'Node.js',
+    file: './test/example/moreExamples/readme1.md'
   },
   {
     href: 'https://nodejs.org/docs/latest-v0.10.x/api/modules.html',
-    title: null,
-    text: 'módulos (CommonJS)'
+    text: 'módulos (CommonJS)',
+    file: './test/example/moreExamples/readme1.md'
   },
   {
     href: 'https://nodejs.org/api/fs.html',
-    title: null,
-    text: 'file system'
+    text: 'file system',
+    file: './test/example/moreExamples/readme1.md'
   },
   {
     href: 'https://nodejs.org/api/path.html',
-    title: null,
-    text: 'path'
+    text: 'path',
+    file: './test/example/moreExamples/readme1.md'
   },
   {
     href: 'https://nodejs.org/api/http.html#http_http_get_options_callback',
-    title: null,
-    text: 'http.get'
+    text: 'http.get',
+    file: './test/example/moreExamples/readme1.md'
   },
   {
     href: 'https://daringfireball.net/projects/markdown/syntax',
-    title: null,
-    text: 'markdown'
+    text: 'markdown',
+    file: './test/example/moreExamples/readme1.md'
   },
   {
     href: 'https://docs.npmjs.com/misc/scripts',
-    title: null, 
-    text: 'npm-scripts' 
+    text: 'npm-scripts',
+    file: './test/example/moreExamples/readme1.md'
   },
   { 
-    href: 'https://semver.org/',
-    title: null, 
-    text: 'semver' 
-  },
-  { 
-    href: 'https://www.google.com',
-    title: 'Google&#39;s Homepage',
-    text: 'I&#39;m an inline-style link with title'
+    href: 'https://semver.org/', 
+    text: 'semver',
+    file: './test/example/moreExamples/readme1.md'
   }
 ];
 const output4 = [
@@ -158,7 +153,7 @@ describe('extractLinks', () => {
     expect(typeof extractLinks).toBe('function');
   });
   it('should return an array of objects with the properties of each found link', () => {
-      expect(extractLinks(input1)).toEqual(output3);
+      expect(extractLinks('./test/example/moreExamples/readme1.md')).toEqual(output3);
   });
 });
 
