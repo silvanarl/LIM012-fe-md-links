@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
 
-
 const isValidPath = (route) => fs.existsSync(route);
 
 const isAbsolutePath = (route) => path.isAbsolute(route);
@@ -13,17 +12,18 @@ const isDirectoryPath = (route) => fs.lstatSync(route).isDirectory();
 
 const routeExtension = (route) => (path.extname(route));
 
+/* Recibe un aruta recorre los elementos que encuentre y devuelve un nuevo array 
+con el nombre del archivo mas la ruta */
 const readDirectoryPath = (route) => {
   const arrFiles = fs.readdirSync(route);
   return arrFiles.map(file => {
     return path.join(route, file);
   })
 };
-//console.log(readDirectoryPath('./test/example/evenMoreExamples'));
 
-//console.log(readDirectoryPath('./test/example/evenMoreExamples')); 
-//devuelve array con ruta de archivos encontrados 
-
+/* Recibe una ruta y si no se trata de un directorio lo agrega al array que retorna,
+de los contrario lee el directorio recorre los elementos pasandolos por la funcion misma
+(recursión) y retorna todas las rutas con extension md encontradas */
 const findMdFiles = (route) => {
   let arrMD = [];
   if (!isDirectoryPath(route)){
@@ -39,30 +39,30 @@ const findMdFiles = (route) => {
   }
   return arrMD;
 }
-console.log(findMdFiles('./test/example/evenMoreExamples'));
-// array con ruta de archivos md
 
+/* Lee un archivo */
 const readFilePath = (route) => {
   return fs.readFileSync(route, 'utf-8');
 };
 
-const extractLinks = (documents) => {
+/* */
+const extractLinks = (route) => {
   let arrLinks = [];
-  const mark = new marked.Renderer();
-  mark.link = (href, file, text) => {
-    const propLink = {
-      href,
-      file,
-      text,
+  const renderer = new marked.Renderer();
+  findMdFiles(route).forEach((file) => {
+    renderer.link = (href, title, text) => {
+      const propLink = {
+        href,
+        text,
+        file
+      };
+      arrLinks.push(propLink);
     };
-    arrLinks.push(propLink);
-  }
-  documents.forEach(document => {
-    marked(readFilePath(document), { renderer: mark })
-  }) 
+      marked(readFilePath(file), { renderer });
+  });
   return arrLinks;  
 }
-console.log(extractLinks(['test\\example\\evenMoreExamples\\file2.md']));
+//console.log(extractLinks('./test/example/moreExamples/readme1.md'));
 
 
 
