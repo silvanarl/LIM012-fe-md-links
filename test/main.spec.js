@@ -7,16 +7,16 @@ const {
   readDirectoryPath,
   readFilePath,
   extractLinks,
-  findMdFiles
+  findMdFiles,
+  validateLinks
 } = require('../src/main.js');
 
 const output1 = [
 'test\\example\\evenMoreExamples\\file1.txt', 
 'test\\example\\evenMoreExamples\\file2.md', 
-'test\\example\\evenMoreExamples\\file3.html', 
-'test\\example\\evenMoreExamples\\otherFiles'];
+'test\\example\\evenMoreExamples\\file3.html'
+];
 const output2 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-
 const output3 = [
   { 
     href: 'https://nodejs.org/en/', 
