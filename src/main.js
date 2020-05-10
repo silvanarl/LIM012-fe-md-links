@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
+const fetch = require ('node-fetch') ; 
+const http = require('http');
 
 const isValidPath = (route) => fs.existsSync(route);
 
@@ -12,7 +14,7 @@ const isDirectoryPath = (route) => fs.lstatSync(route).isDirectory();
 
 const routeExtension = (route) => (path.extname(route));
 
-/* Recibe un aruta recorre los elementos que encuentre y devuelve un nuevo array 
+/* Recibe una ruta recorre los elementos que encuentre y devuelve un nuevo array 
 con el nombre del archivo mas la ruta */
 const readDirectoryPath = (route) => {
   const arrFiles = fs.readdirSync(route);
@@ -37,8 +39,8 @@ const findMdFiles = (route) => {
       arrMD = arrMD.concat(completeRoute);
     });
   }
-  return arrMD;
-}
+  return arrMD;  
+};
 
 /* Lee un archivo */
 const readFilePath = (route) => {
@@ -61,8 +63,35 @@ const extractLinks = (route) => {
       marked(readFilePath(file), { renderer });
   });
   return arrLinks;  
-}
-//console.log(extractLinks('./test/example/moreExamples/readme1.md'));
+};
+//console.log(extractLinks('./test/example/sample_text.md'));
+
+/*Validar url*/ 
+// let promesa = fetch('https://nodejs/api');
+// promesa.then(res => console.log('la respuesta es:', res.status)) // res.ok =>return boolean // res.statusText => status
+// .catch(error => console.log('Hay un error', error));
+
+const validateLinks = (route) => {
+  let newPropertiesOfLinks = [];
+  const routeLinks = extractLinks(route);
+  routeLinks.forEach((element) => {
+    newPropertiesOfLinks.push(fetch(element.href)
+    .then((res) => {
+      const newElement = {
+        href: element.href,
+        text: element.text,
+        file: element.file,          
+        status: res.status,
+        statusText: res.statusText
+      };
+      console.log(newElement); // solo sale si es console.log y sino sale pending
+    })
+    .catch(error => console.log(error)));
+  });
+  return Promise.all(newPropertiesOfLinks);
+};
+console.log(validateLinks('./test/example/sample_text.md'));
+
 
 
 
@@ -75,6 +104,7 @@ module.exports = {
   readDirectoryPath,
   readFilePath,
   findMdFiles,
-  extractLinks
-}
+  extractLinks,
+  validateLinks
+};
 
