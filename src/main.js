@@ -79,18 +79,18 @@ const validateLinks = (route) => {
     .then((res) => {
       const newElement = {
         href: element.href,
-        text: element.text,
+        text: element.text.substring(0, 50),
         file: element.file,          
         status: res.status,
         statusText: res.statusText
       };
-      console.log(newElement); // solo sale si es console.log y sino sale pending
+      return newElement; // solo sale si es console.log y sino sale pending y eso lo lleva a mdLinks
     })
     .catch(error => console.log(error)));
   });
   return Promise.all(newPropertiesOfLinks);
 };
-console.log(validateLinks('./test/example/sample_text.md'));
+//console.log(validateLinks('./test/example/sample_text.md'));
 
 
 
