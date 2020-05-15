@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
 const fetch = require ('node-fetch') ; 
-const http = require('http');
 
 const isValidPath = (route) => fs.existsSync(route);
 
@@ -27,49 +26,49 @@ const readDirectoryPath = (route) => {
 de los contrario lee el directorio recorre los elementos pasandolos por la funcion misma
 (recursión) y retorna todas las rutas con extension md encontradas */
 const findMdFiles = (route) => {
-  let arrMD = [];
+  let arrFilesMD = [];
   if (!isDirectoryPath(route)){
     if (routeExtension(route) === '.md'){
-    arrMD.push(route)
+    arrFilesMD.push(route)
     }
   } else {
       readDirectoryPath(route).forEach((file) =>{
       const fileRoute = file;
       const completeRoute = findMdFiles(fileRoute)
-      arrMD = arrMD.concat(completeRoute);
+      arrFilesMD = arrFilesMD.concat(completeRoute);
     });
   }
-  return arrMD;  
+  return arrFilesMD;  
 };
 
-/* Lee un archivo */
 const readFilePath = (route) => {
   return fs.readFileSync(route, 'utf-8');
 };
 
 /* */
 const extractLinks = (route) => {
-  let arrLinks = [];
-  const renderer = new marked.Renderer();
-  findMdFiles(route).forEach((file) => {
-    renderer.link = (href, title, text) => {
-      const propLink = {
-        href,
-        text,
-        file
-      };
-      arrLinks.push(propLink);
-    };
-      marked(readFilePath(file), { renderer });
-  });
-  return arrLinks;  
+  if (!isValidPath(route)) {
+    return error;
+  } else {
+    if (!isAbsolutePath(route)) {
+      const newRouteAbsolute = converterRelativeToAbsolutePath(route);
+      let arrLinks = [];
+      const renderer = new marked.Renderer();
+      findMdFiles(newRouteAbsolute).forEach((file) => {
+        renderer.link = (href, title, text) => {
+          const propLink = {
+            href,
+            text,
+            file
+          };
+          arrLinks.push(propLink);
+        };
+        marked(readFilePath(file), { renderer });
+      });
+      return arrLinks; 
+    }
+  }  
 };
-//console.log(extractLinks('./test/example/sample_text.md'));
-
-/*Validar url*/ 
-// let promesa = fetch('https://nodejs/api');
-// promesa.then(res => console.log('la respuesta es:', res.status)) // res.ok =>return boolean // res.statusText => status
-// .catch(error => console.log('Hay un error', error));
 
 const validateLinks = (route) => {
   let newPropertiesOfLinks = [];
@@ -84,16 +83,12 @@ const validateLinks = (route) => {
         status: res.status,
         statusText: res.statusText
       };
-      return newElement; // solo sale si es console.log y sino sale pending y eso lo lleva a mdLinks
+      return newElement;
     })
-    .catch(error => console.log(error)));
+    .catch(error => console.error(error)));
   });
   return Promise.all(newPropertiesOfLinks);
 };
-//console.log(validateLinks('./test/example/sample_text.md'));
-
-
-
 
 module.exports = {
   isValidPath,
@@ -107,4 +102,3 @@ module.exports = {
   extractLinks,
   validateLinks
 };
-
