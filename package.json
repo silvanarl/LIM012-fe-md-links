@@ -2,7 +2,7 @@
   "name": "md-links",
   "version": "1.0.0",
   "description": "Analiza archivos en formato Markdown, verifica los links que contengan y reporta algunas estadísticas.",
-  "main": "main.js",
+  "main": "./src/mdLinks.js",
   "scripts": {
     "test": "jest --verbose --coverage",
     "eslint": "eslint --ext .js src/ test/"
@@ -19,9 +19,14 @@
   },
   "homepage": "https://github.com/silvanarl/LIM012-fe-md-links#readme",
   "devDependencies": {
-    "@babel/preset-env": "^7.9.5",
-    "babel-jest": "^25.4.0",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^25.5.1",
     "eslint": "^6.8.0",
     "jest": "^25.4.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "markdown-link-extractor": "^1.2.3",
+    "node-fetch": "^2.6.0"
   }
 }
