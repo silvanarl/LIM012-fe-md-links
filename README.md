@@ -87,10 +87,14 @@ las necesidades del usuario:
 - Encontrar un board con el backlog para la implementación de la librería.
 - Encontrar la documentación técnica de la librería.
 - Encontrar la Guía de uso e instalación de la librería.
-Diagrama de Flujo:
-![Diagrama-de-flujo](src/img/Diagrama_md-links.png)
 
-Boilerplate:
+##### Diagrama de Flujo:
+![Diagrama-de-flujo](test/img/Diagrama_md-links.png)
+
+##### Board en GitHub Projects:
+![BoardOnGH](test/img/boardMdLinks.png)
+
+##### Boilerplate:
 
 ```text
 .
@@ -100,16 +104,6 @@ Boilerplate:
 |  ├── mdLinks.js
 |  └── stats.js
 ├── test
-|  ├── example
-|  |  ├── evenMoreExamples
-|  |  |  ├── file1.txt
-|  |  |  ├── file2.md
-|  |  |  └── file3.html
-|  |  ├── moreExamples
-|  |  |  ├── otherFile.html
-|  |  |  ├── readme1.md
-|  |  |  └── readme2.md
-|  |  └── sample_text.md
 |  ├── .eslintrc
 |  ├── cli.spec.js
 |  ├── main.spec.js
@@ -126,6 +120,9 @@ Boilerplate:
 
 directory: 5 file: 24
 ```
+
+#### Documentación Técnica:
+
 
 ### API `mdLinks(path, opts)`
 
