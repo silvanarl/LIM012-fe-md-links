@@ -1,33 +1,16 @@
 const stats = (array) => {
   const quantity = array.length;
   const uniqueLinks = new Set(array.map((element) => element.href)).size;
-  const statsReturn = `
+  if (array.length === 0) {
+    return 'No links found in this file.';
+  } else {
+    const statsReturn = `
     TOTAL: ${quantity}
     UNIQUE: ${uniqueLinks}
     `;
+  }
   return statsReturn;
 };
-/*console.log(stats([
-    { 
-      href: 'https://nodejs.org/en/', 
-      text: 'Node.js',
-      file: './test/example/moreExamples/readme1.md'
-    },
-    {
-      href: 'https://nodejs.org/docs/latest-v0.10.x/api/modules.html',
-      text: 'módulos (CommonJS)',
-      file: './test/example/moreExamples/readme1.md'
-    },
-    { 
-        href: 'https://nodejs.org/en/', 
-        text: 'Node.js',
-        file: './test/example/moreExamples/readme1.md'
-    },
-    {
-        href: 'https://nodejs.org/docs/latest-v0.10.x/api/modules.html',
-        text: 'módulos (CommonJS)',
-        file: './test/example/moreExamples/readme1.md'
-}]));*/
 
 const statsValidate = (array) => {
   const quantity = array.length;
@@ -40,45 +23,7 @@ const statsValidate = (array) => {
     `;
   return statsValidateReturn;
 };
-/*console.log(statsValidate([
-    { 
-        href: 'https://github.com/1256325', 
-        text: 'Not found',
-        file: './test/example/sample_text.md',
-        status: 404,
-        statusText: 'Not found'
-    },
-    { 
-      href: 'https://github.com/1256325', 
-      text: 'Not found',
-      file: './test/example/sample_text.md',
-      status: 404,
-      statusText: 'Not found'
-    },
-    {
-      href: 'https://nodejs.org/docs/latest-v0.10.x/api/modules.html',
-      text: 'módulos (CommonJS)',
-      file: './test/example/moreExamples/readme1.md',
-      status: 200,
-      statusText: 'OK'
-    },
-    { 
-        href: 'https://nodejs.org/en/', 
-        text: 'Node.js',
-        file: './test/example/moreExamples/readme1.md',
-        status: 200,
-        statusText: 'OK'
-    },
-    {
-        href: 'https://nodejs.org/docs/latest-v0.10.x/api/modules.html',
-        text: 'módulos (CommonJS)',
-        file: './test/example/moreExamples/readme1.md',
-        status: 200,
-        statusText: 'OK'
-    }
-]));*/
-
 module.exports = {
-    stats,
-    statsValidate
-}
+  stats,
+  statsValidate
+};
