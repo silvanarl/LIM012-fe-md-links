@@ -36,6 +36,6 @@
     "LICENSE",
     "src/cli.js",
     "README.md",
-    "src/mdLinks"
+    "src/mdLinks.js"
   ]
 }
