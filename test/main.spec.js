@@ -11,62 +11,107 @@ const {
   validateLinks
 } = require('../src/main.js');
 
-const output1 = [
+const readDirectoryPathOutput = [
 'test\\example\\evenMoreExamples\\file1.txt', 
 'test\\example\\evenMoreExamples\\file2.md', 
 'test\\example\\evenMoreExamples\\file3.html'
 ];
-const output2 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-const output3 = [
+const readFilePathOutput = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+const extractLinksOutput = [
   { 
     href: 'https://nodejs.org/en/', 
     text: 'Node.js',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   },
   {
     href: 'https://nodejs.org/docs/latest-v0.10.x/api/modules.html',
     text: 'módulos (CommonJS)',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   },
   {
     href: 'https://nodejs.org/api/fs.html',
     text: 'file system',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   },
   {
     href: 'https://nodejs.org/api/path.html',
     text: 'path',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   },
   {
     href: 'https://nodejs.org/api/http.html#http_http_get_options_callback',
     text: 'http.get',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   },
   {
     href: 'https://daringfireball.net/projects/markdown/syntax',
     text: 'markdown',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   },
   {
     href: 'https://docs.npmjs.com/misc/scripts',
     text: 'npm-scripts',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   },
   { 
     href: 'https://semver.org/', 
     text: 'semver',
-    file: './test/example/moreExamples/readme1.md'
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\moreExamples\\readme1.md'
   }
 ];
-const output4 = [
+const findMdFilesOutput1 = [
   './test/example/sample_text.md'
-]
-const output5 = [
+];
+const findMdFilesOutput2 = [
   'test\\example\\evenMoreExamples\\file2.md',
   'test\\example\\moreExamples\\readme1.md',
   'test\\example\\moreExamples\\readme2.md',
   'test\\example\\sample_text.md'
+];
+
+const validateLinksOutput = [
+  {
+    href: 'https://www.google.com/',
+    text: 'Google',
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
+    status: 200,
+    statusText: 'OK'
+  },
+  {
+    href: 'https://slack.com/intl/es-pe/',
+    text: 'Slack',
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
+    status: 200,
+    statusText: 'OK'
+  },
+  {
+    href: 'https://es.stackoverflow.com/',
+    text: 'Stackoverflow',
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
+    status: 200,
+    statusText: 'OK'
+  },
+  {
+    href: 'https://nodejs.org/en/',
+    text: 'Node.js',
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
+    status: 200,
+    statusText: 'OK'
+  },
+  {
+    href: 'http://qux.com',
+    text: 'Qux',
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
+    status: 200,
+    statusText: 'OK'
+  },
+  {
+    href: 'https://github.com/1256325',
+    text: 'Not found',
+    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
+    status: 404,
+    statusText: 'Not Found'
+  }
 ];
 
 describe('isValidPath', () => {
@@ -135,7 +180,7 @@ describe('readDirectoryPath', () => {
     expect(typeof readDirectoryPath).toBe('function');
   });
   it('should return an array with the elements found', () => {
-      expect(readDirectoryPath('./test/example/evenMoreExamples')).toEqual(output1);
+      expect(readDirectoryPath('./test/example/evenMoreExamples')).toEqual(readDirectoryPathOutput);
   });
 });
 
@@ -144,7 +189,7 @@ describe('readFilePath', () => {
     expect(typeof readFilePath).toBe('function');
   });
   it('should return the contents of the file read', () => {
-      expect(readFilePath('./test/example/moreExamples/readme2.md')).toEqual(output2);
+      expect(readFilePath('./test/example/moreExamples/readme2.md')).toEqual(readFilePathOutput);
   });
 });
 
@@ -153,7 +198,10 @@ describe('extractLinks', () => {
     expect(typeof extractLinks).toBe('function');
   });
   it('should return an array of objects with the properties of each found link', () => {
-      expect(extractLinks('./test/example/moreExamples/readme1.md')).toEqual(output3);
+      expect(extractLinks('./test/example/moreExamples/readme1.md')).toEqual(extractLinksOutput);
+  });
+  it('Should throw an error when path is not valid', () => {
+      expect(() => extractLinks('./test/fileInvalid.md')).toThrow(Error);
   });
 });
 
@@ -162,9 +210,21 @@ describe('findMDFiles', () => {
     expect(typeof findMdFiles).toBe('function');
   });
   it('should return in an array the path it receives if it is an .md file', () => {
-    expect(findMdFiles('./test/example/sample_text.md')).toEqual(output4);
+    expect(findMdFiles('./test/example/sample_text.md')).toEqual(findMdFilesOutput1);
   });
   it('should return an array with all the md files found when it receives a directory', () => {
-    expect(findMdFiles('./test/example')).toEqual(output5);
+    expect(findMdFiles('./test/example')).toEqual(findMdFilesOutput2);
+  });
+});
+
+describe('validateLinks', () => {
+  it('should be a function', () => {
+    expect(typeof validateLinks).toBe('function');
+  });
+  test('returns an array with five properties for each link', () => {
+    return expect(validateLinks('./test/example/sample_text.md')).resolves.toEqual(validateLinksOutput);
+  });
+  test('returns an empty array for a file without links ', () => {
+    return expect(validateLinks('./test/example/moreExamples/readme2.md')).resolves.toEqual([]);
   });
 });
