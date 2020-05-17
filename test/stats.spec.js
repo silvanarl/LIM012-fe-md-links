@@ -68,6 +68,9 @@ describe('stats', () => {
     it('should return two stats about links found', () => {
         expect(stats(input1)).toEqual(output1);
     });
+    it('should return...', () => {
+        expect(stats([])).toEqual('No links found in this file.');
+    });
 });
 
 describe('statsValidate', () => {
