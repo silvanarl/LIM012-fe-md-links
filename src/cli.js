@@ -31,7 +31,7 @@ const cli = (route, option1, option2) => {
     if ((option1 === '--validate' || option1 === '--v') && (option2 === '--stats' || option2 === '--s')) {
         return mdLinks(route, {validate: true})
         .then((links) => console.table(statsValidate(links)))
-        .catch(error => console.log(help));
+        .catch(error => console.log(error));
     }
     if ((option1 === '--validate' || option1 === '--v') && (option2 === undefined)) {
         return mdLinks(route, {validate: true})
