@@ -48,7 +48,7 @@ const readFilePath = (route) => {
 /* */
 const extractLinks = (route) => {
   if (!isValidPath(route)) {
-    return error;
+    throw Error;
   } else {
     if (!isAbsolutePath(route)) {
       const newRouteAbsolute = converterRelativeToAbsolutePath(route);
@@ -73,20 +73,24 @@ const extractLinks = (route) => {
 const validateLinks = (route) => {
   let newPropertiesOfLinks = [];
   const routeLinks = extractLinks(route);
-  routeLinks.forEach((element) => {
-    newPropertiesOfLinks.push(fetch(element.href)
-    .then((res) => {
-      const newElement = {
-        href: element.href,
-        text: element.text.substring(0, 50),
-        file: element.file,          
-        status: res.status,
-        statusText: res.statusText
-      };
-      return newElement;
-    })
-    .catch(error => console.error(error)));
-  });
+  if (routeLinks.length === 0) {
+    return 'No links found in this file.'
+  } else {
+    routeLinks.forEach((element) => {
+      newPropertiesOfLinks.push(fetch(element.href)
+      .then((res) => {
+        const newElement = {
+          href: element.href,
+          text: element.text.substring(0, 50),
+          file: element.file,          
+          status: res.status,
+          statusText: res.statusText
+        };
+        return newElement;
+      })
+      .catch(error => console.error(error)));
+    });
+  }
   return Promise.all(newPropertiesOfLinks);
 };
 
