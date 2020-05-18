@@ -32,13 +32,15 @@
     "markdown-link-extractor": "^1.2.3",
     "node-fetch": "^2.6.0"
   },
-  "bin": {
-    "md-links": "./src/cli.js"
-  },
   "files": [
     "LICENSE",
     "src/cli.js",
     "README.md",
-    "src/mdLinks.js"
-  ]
+    "src/mdLinks.js",
+    "src/main.js",
+    "src/stats.js"
+  ],
+  "bin": {
+    "md-links": "./src/cli.js"
+  }
 }
