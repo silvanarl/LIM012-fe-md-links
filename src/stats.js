@@ -8,8 +8,8 @@ const stats = (array) => {
     TOTAL: ${quantity}
     UNIQUE: ${uniqueLinks}
     `;
+    return statsReturn;
   }
-  return statsReturn;
 };
 
 const statsValidate = (array) => {
