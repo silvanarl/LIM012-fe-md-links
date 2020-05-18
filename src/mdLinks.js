@@ -5,7 +5,7 @@ const mdLinks = (path, options) => {
         if (options.validate === true) {
             resolve(validateLinks(path)); 
         }
-        if (path) {
+        if (options.validate === false) {
             resolve(extractLinks(path));
         }
     });
