@@ -45,10 +45,9 @@ const readFilePath = (route) => {
   return fs.readFileSync(route, 'utf-8');
 };
 
-/* */
 const extractLinks = (route) => {
   if (!isValidPath(route)) {
-    throw Error;
+    throw new Error('Invalid path');
   } else {
     if (!isAbsolutePath(route)) {
       const newRouteAbsolute = converterRelativeToAbsolutePath(route);
@@ -69,13 +68,11 @@ const extractLinks = (route) => {
     }
   }  
 };
+//console.log(extractLinks('./examplo/test/invalid.md'));
 
 const validateLinks = (route) => {
   let newPropertiesOfLinks = [];
   const routeLinks = extractLinks(route);
-  if (routeLinks.length === 0) {
-    return 'No links found in this file.'
-  } else {
     routeLinks.forEach((element) => {
       newPropertiesOfLinks.push(fetch(element.href)
       .then((res) => {
@@ -87,10 +84,8 @@ const validateLinks = (route) => {
           statusText: res.statusText
         };
         return newElement;
-      })
-      .catch(error => console.error(error)));
+      }));
     });
-  }
   return Promise.all(newPropertiesOfLinks);
 };
 
