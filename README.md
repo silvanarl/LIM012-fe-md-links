@@ -121,8 +121,9 @@ las necesidades del usuario:
 directory: 5 file: 24
 ```
 
-#### Documentación Técnica:
+### Instalación:
 
+`npm install silvanarl/LIM012-fe-md-links`
 
 ### API `mdLinks(path, opts)`
 
@@ -216,18 +217,17 @@ manera a través de la terminal:
 
 Por ejemplo:
 
-```sh
-$ md-links ./some/example.md
-./some/example.md http://algo.com/2/3/ Link a algo
-./some/example.md https://otra-cosa.net/algun-doc.html algún doc
-./some/example.md http://google.com/ Google
-```
+![md-links_path](test/img/readRoute.png)
 
 El comportamiento por defecto no debe validar si las URLs responden ok o no,
 solo debe identificar el archivo markdown (a partir de la ruta que recibe como
 argumento), analizar el archivo Markdown e imprimir los links que vaya
 encontrando, junto con la ruta del archivo donde aparece y el texto
 que hay dentro del link (truncado a 50 caracteres).
+
+Si solo se pasa `md-links` nos envía un texto de argumentos válidos
+
+![md-links](test/img/help.png)
 
 #### Options
 
@@ -239,12 +239,7 @@ URL que responde ok, entonces consideraremos el link como ok.
 
 Por ejemplo:
 
-```sh13d99df067c1
-$ md-13d99df067c1
-./some/example.md http://algo.com/2/3/ ok 200 Link a algo
-./some/example.md https://otra-cosa.net/algun-doc.html fail 404 algún doc
-./some/example.md http://google.com/ ok 301 Google
-```
+![md-links_path_--validate](test/img/validate.png)
 
 Vemos que el _output_ en este caso incluye la palabra `ok` o `fail` después de
 la URL, así como el status de la respuesta recibida a la petición HTTP a dicha
@@ -255,21 +250,12 @@ URL.
 Si pasamos la opción `--stats` el output (salida) será un texto con estadísticas
 básicas sobre los links.
 
-```sh
-$ md-links ./some/example.md --stats
-Total: 3
-Unique: 3
-```
+![md-links_Path_--stats](test/img/stats.png)
 
 También podemos combinar `--stats` y `--validate` para obtener estadísticas que
 necesiten de los resultados de la validación.
 
-```sh
-$ md-links ./some/example.md --stats --validate
-Total: 3
-Unique: 3
-Broken: 1
-```
+![md-links_Path_--validate--stats](test/img/validateStats.png)
 
 ## Entregables
 
@@ -283,34 +269,34 @@ Recuerda colocar en esta seccion los objetivos de aprendizaje que quedaron
 pendientes de tu proyecto anterior.
 
 ### Javascript
-- [ ] Uso de callbacks
-- [ ] Consumo de Promesas
+- [x] Uso de callbacks
+- [x] Consumo de Promesas
 - [ ] Creacion de Promesas
 - [ ] Modulos de Js
-- [ ] Recursión
+- [x] Recursión
 
 ### Node
 - [ ] Sistema de archivos
-- [ ] package.json
+- [x] package.json
 - [ ] crear modules
-- [ ] Instalar y usar modules
+- [x] Instalar y usar modules
 - [ ] npm scripts
 - [ ] CLI (Command Line Interface - Interfaz de Línea de Comando)
 
 ### Testing
-- [ ] Testeo de tus funciones
+- [x] Testeo de tus funciones
 - [ ] Testeo asíncrono
-- [ ] Uso de librerias de Mock
+- [x] Uso de librerias de Mock
 - [ ] Mocks manuales
 - [ ] Testeo para multiples Sistemas Operativos
 
 ### Git y Github
-- [ ] Organización en Github
+- [x] Organización en Github
 
 ### Buenas prácticas de desarrollo
-- [ ] Modularización
-- [ ] Nomenclatura / Semántica
-- [ ] Linting
+- [x] Modularización
+- [x] Nomenclatura / Semántica
+- [x] Linting
 
 ***
 
