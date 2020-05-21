@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
-const fetch = require ('node-fetch') ; 
+const fetch = require ('node-fetch'); 
 
 const isValidPath = (route) => fs.existsSync(route);
 
@@ -68,7 +68,7 @@ const extractLinks = (route) => {
     }
   }  
 };
-//console.log(extractLinks('./examplo/test/invalid.md'));
+console.log(extractLinks('./test/example/readmeMock.md'));
 
 const validateLinks = (route) => {
   let newPropertiesOfLinks = [];
