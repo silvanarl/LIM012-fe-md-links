@@ -56,53 +56,26 @@ const findMdFilesOutput2 = [
     'test\\example\\evenMoreExamples\\file2.md',
     'test\\example\\moreExamples\\readme1.md',
     'test\\example\\moreExamples\\readme2.md',
+    'test\\example\\readmeMock.md',
     'test\\example\\sample_text.md'
 ];
     
-const validateLinksOutput = [
-    {
-    href: 'https://www.google.com/',
-    text: 'Google',
-    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
-    status: 200,
-    statusText: 'OK'
-    },
-    {
-    href: 'https://slack.com/intl/es-pe/',
-    text: 'Slack',
-    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
-    status: 200,
-    statusText: 'OK'
-    },
-    {
-    href: 'https://es.stackoverflow.com/',
-    text: 'Stackoverflow',
-    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
-    status: 200,
-    statusText: 'OK'
-    },
-    {
-    href: 'https://nodejs.org/en/',
-    text: 'Node.js',
-    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
-    status: 200,
-    statusText: 'OK'
-    },
-    {
-    href: 'http://qux.com',
-    text: 'Qux',
-    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
-    status: 200,
-    statusText: 'OK'
-    },
-    {
-    href: 'https://github.com/1256325',
-    text: 'Not found',
-    file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\sample_text.md',
-    status: 404,
-    statusText: 'Not Found'
-    }
-];
+// const mdLinksOutput = [
+//     {
+//     href: 'https://www.google.com/',
+//     text: 'Google',
+//     file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\readmeMock.md',
+//     status: 200,
+//     statusText: 'OK'
+//     },
+//     {
+//     href: 'https://github.com/1256325',
+//     text: 'Not found',
+//     file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\readmeMock.md',
+//     status: 404,
+//     statusText: 'Not Found'
+//     }
+// ];
 
 const inputArrayForStatsWithThreeProperties = [
     { 
@@ -165,15 +138,31 @@ const statsValidateOutput = `
     UNIQUE: 3
     BROKEN: 2
     `;    
-module.exports = {
+const validateMock = [
+    {
+        href: 'https://www.google.com/',
+        text: 'Google',
+        file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\readmeMock.md',
+        status: 200,
+        statusText:'OK'
+    },
+    {
+        href: 'https://github.com/1256325',
+        text: 'Not found',
+        file: 'C:\\Users\\acer\\Desktop\\LIM012-fe-md-links\\test\\example\\readmeMock.md',
+        status: 404,
+        statusText:'Not Found'
+    }
+];
+    module.exports = {
     readDirectoryPathOutput,
     readFilePathOutput,
     extractLinksOutput,
     findMdFilesOutput1,
     findMdFilesOutput2,
-    validateLinksOutput,
     inputArrayForStatsWithThreeProperties,
     inputArrayForStatsWithFiveProperties,
     statsOutput,
-    statsValidateOutput
+    statsValidateOutput,
+    validateMock
 };
