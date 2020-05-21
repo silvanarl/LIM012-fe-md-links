@@ -17,8 +17,9 @@ const {
     extractLinksOutput,
     findMdFilesOutput1,
     findMdFilesOutput2,
-    validateLinksOutput
+    validateMock
 } = require('./dataForTest.js');
+
 
 describe('isValidPath', () => {
     it('should be a function', () => {
@@ -128,7 +129,7 @@ describe('validateLinks', () => {
     expect(typeof validateLinks).toBe('function');
   });
   test('returns an array with five properties for each link', () => {
-    return expect(validateLinks('./test/example/sample_text.md')).resolves.toEqual(validateLinksOutput);
+    return expect(validateLinks('./test/example/readmeMock.md')).resolves.toEqual(validateMock);
   });
   test('returns an empty array for a file without links ', () => {
     return expect(validateLinks('./test/example/moreExamples/readme2.md')).resolves.toEqual([]);

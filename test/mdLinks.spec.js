@@ -1,7 +1,7 @@
 const mdLinks = require('../src/mdLinks.js')
 
 const {
-    validateLinksOutput,
+    validateMock,
     extractLinksOutput
 } = require('./dataForTest.js');
 
@@ -11,8 +11,8 @@ describe('mdLinks', () => {
     });
     it('returns an array with five properties for each link', () => {
         expect.assertions(1);
-        return mdLinks('./test/example/sample_text.md', {validate: true}).then((response) => {
-            expect(response).toEqual(validateLinksOutput)
+        return mdLinks('./test/example/readmeMock.md', {validate: true}).then((response) => {
+            expect(response).toEqual(validateMock)
         });
     });
     it('returns an array with three properties for each link', () => {
