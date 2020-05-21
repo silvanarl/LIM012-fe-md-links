@@ -73,12 +73,14 @@ utilizar [Jest](https://jestjs.io/) para tus pruebas unitarias.
 caso optes utilizarlo deberas de crear un script de `build` en el `package.json`
 que transforme el código ES6+ a ES5 con ayuda de babel.
 
-## Criterios de aceptacion
+## Criterios de aceptación
 
 Estos son los criterios de lo que debe ocurrir para que se satisfagan 
 las necesidades del usuario:
 
-- Instalar la libreria via `npm install --global <github-user>/md-links`
+- Instalar la libreria via:
+
+`npm install silvanarl/LIM012-fe-md-links`
 
 ### `README.md`
 
@@ -120,10 +122,6 @@ las necesidades del usuario:
 
 directory: 5 file: 24
 ```
-
-### Instalación:
-
-`npm install silvanarl/LIM012-fe-md-links`
 
 ### API `mdLinks(path, opts)`
 
