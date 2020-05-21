@@ -20,7 +20,6 @@ const {
     validateMock
 } = require('./dataForTest.js');
 
-
 describe('isValidPath', () => {
     it('should be a function', () => {
       expect(typeof isValidPath).toBe('function');

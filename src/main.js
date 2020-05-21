@@ -68,7 +68,6 @@ const extractLinks = (route) => {
     }
   }  
 };
-console.log(extractLinks('./test/example/readmeMock.md'));
 
 const validateLinks = (route) => {
   let newPropertiesOfLinks = [];
