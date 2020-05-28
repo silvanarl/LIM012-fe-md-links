@@ -32,7 +32,7 @@ const findMdFiles = (route) => {
     arrFilesMD.push(route)
     }
   } else {
-      readDirectoryPath(route).forEach((file) =>{
+      readDirectoryPath(route).forEach((file) => {
       const fileRoute = file;
       const completeRoute = findMdFiles(fileRoute)
       arrFilesMD = arrFilesMD.concat(completeRoute);
