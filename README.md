@@ -232,16 +232,11 @@ Si solo se pasa `md-links` nos envía un texto de argumentos válidos
 ##### `--validate`
 
 Si pasamos la opción `--validate`, el módulo debe hacer una petición HTTP para
-averiguar si el link funciona o no. Si el link resulta en una redirección a una
-URL que responde ok, entonces consideraremos el link como ok.
+averiguar si el link funciona o no. 
 
 Por ejemplo:
 
 ![md-links_path_--validate](test/img/validate.png)
-
-Vemos que el _output_ en este caso incluye la palabra `ok` o `fail` después de
-la URL, así como el status de la respuesta recibida a la petición HTTP a dicha
-URL.
 
 ##### `--stats`
 
@@ -270,23 +265,23 @@ pendientes de tu proyecto anterior.
 - [x] Uso de callbacks
 - [x] Consumo de Promesas
 - [ ] Creacion de Promesas
-- [ ] Modulos de Js
+- [x] Modulos de Js
 - [x] Recursión
 
 ### Node
-- [ ] Sistema de archivos
+- [x] Sistema de archivos
 - [x] package.json
-- [ ] crear modules
+- [x] crear modules
 - [x] Instalar y usar modules
-- [ ] npm scripts
-- [ ] CLI (Command Line Interface - Interfaz de Línea de Comando)
+- [x] npm scripts
+- [x] CLI (Command Line Interface - Interfaz de Línea de Comando)
 
 ### Testing
 - [x] Testeo de tus funciones
 - [ ] Testeo asíncrono
 - [x] Uso de librerias de Mock
 - [ ] Mocks manuales
-- [ ] Testeo para multiples Sistemas Operativos
+- [x] Testeo para multiples Sistemas Operativos
 
 ### Git y Github
 - [x] Organización en Github
