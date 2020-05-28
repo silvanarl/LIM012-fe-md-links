@@ -8,7 +8,7 @@ const isValidPath = (route) => fs.existsSync(route);
 const isAbsolutePath = (route) => path.isAbsolute(route);
 
 const converterRelativeToAbsolutePath = (route) => path.resolve(route);
-
+//Este es un comentario de Fares
 const isDirectoryPath = (route) => fs.lstatSync(route).isDirectory();
 
 const routeExtension = (route) => (path.extname(route));
