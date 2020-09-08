@@ -5,7 +5,8 @@
   "main": "./src/mdLinks.js",
   "scripts": {
     "test": "jest --verbose --coverage",
-    "eslint": "eslint --ext .js src/ test/"
+    "eslint": "eslint --ext .js src/ test/",
+    "hola": "echo hola"
   },
   "repository": {
     "type": "git",
